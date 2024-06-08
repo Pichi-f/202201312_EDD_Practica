@@ -11,7 +11,7 @@
         "estado": "Disponible"
     },
     {
-        "vuelo": "DL456",
+        "vuelo": "DA456",
         "numero_de_registro": "N12345",
         "modelo": "Airbus A320",
         "fabricante": "Airbus",
@@ -24,23 +24,122 @@
     {
         "vuelo": "DL456",
         "numero_de_registro": "A12345",
-        "modelo": "Airbus A320",
+        "modelo": "Airbus A720",
         "fabricante": "Airbus",
-        "ano_fabricacion": 2015,
-        "capacidad": 180,
-        "peso_max_despegue": 75000,
+        "ano_fabricacion": 2018,
+        "capacidad": 210,
+        "peso_max_despegue": 60000,
         "aerolinea": "Delta",
         "estado": "Mantenimiento"
     },
     {
-        "vuelo": "DL456",
-        "numero_de_registro": "C13579",
-        "modelo": "Airbus A320",
-        "fabricante": "Airbus",
-        "ano_fabricacion": 2015,
-        "capacidad": 180,
-        "peso_max_despegue": 75000,
-        "aerolinea": "Delta",
+        "vuelo": "UA789",
+        "numero_de_registro": "U12345",
+        "modelo": "Boeing 777",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2012,
+        "capacidad": 350,
+        "peso_max_despegue": 150000,
+        "aerolinea": "United Airlines",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "SW456",
+        "numero_de_registro": "S12345",
+        "modelo": "Boeing 737",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2018,
+        "capacidad": 175,
+        "peso_max_despegue": 85000,
+        "aerolinea": "Southwest",
         "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "BA321",
+        "numero_de_registro": "B12345",
+        "modelo": "Airbus A380",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2010,
+        "capacidad": 500,
+        "peso_max_despegue": 560000,
+        "aerolinea": "British Airways",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "LH654",
+        "numero_de_registro": "L12345",
+        "modelo": "Boeing 747",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2005,
+        "capacidad": 416,
+        "peso_max_despegue": 400000,
+        "aerolinea": "Lufthansa",
+        "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "AA654",
+        "numero_de_registro": "A67890",
+        "modelo": "Boeing 737",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2008,
+        "capacidad": 160,
+        "peso_max_despegue": 79000,
+        "aerolinea": "American Airlines",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "AF987",
+        "numero_de_registro": "F12345",
+        "modelo": "Airbus A350",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2016,
+        "capacidad": 300,
+        "peso_max_despegue": 280000,
+        "aerolinea": "Air France",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "EK999",
+        "numero_de_registro": "E12345",
+        "modelo": "Boeing 777",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2011,
+        "capacidad": 350,
+        "peso_max_despegue": 151000,
+        "aerolinea": "Emirates",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "QF432",
+        "numero_de_registro": "Q12345",
+        "modelo": "Airbus A380",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2012,
+        "capacidad": 525,
+        "peso_max_despegue": 560000,
+        "aerolinea": "Qantas",
+        "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "CX123",
+        "numero_de_registro": "C56789",
+        "modelo": "Boeing 777",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2014,
+        "capacidad": 340,
+        "peso_max_despegue": 149000,
+        "aerolinea": "Cathay Pacific",
+        "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "NH654",
+        "numero_de_registro": "N67890",
+        "modelo": "Boeing 787",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2017,
+        "capacidad": 242,
+        "peso_max_despegue": 227930,
+        "aerolinea": "ANA",
+        "estado": "Disponible"
     }
 ]

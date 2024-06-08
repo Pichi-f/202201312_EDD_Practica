@@ -4,9 +4,13 @@
 #include <cstring>
 #include "listaCircularAviones.h"
 #include "nodoAviones.h"
+#include "colaPasajeros.h"
+#include "nodoPasajeros.h"
 
 listaCircularAviones *avionesDisponibles = new listaCircularAviones();
 listaCircularAviones *avionesEnMantenimiento = new listaCircularAviones();
+colaPasajeros *pasajeros = new colaPasajeros();
+
 
 using namespace std;
 using json = nlohmann::json;
@@ -53,7 +57,28 @@ void cargaAviones(){
 }
 
 void cargaPasajeros(){
-    cout << "Carga de pasajeros" << endl;
+    ifstream archivo("pasajeros.json");
+
+    if (!archivo.is_open())
+    {
+        cout << "No se pudo abrir el archivo" << endl;
+        return;
+    }
+    json j;
+    archivo >> j;
+
+    for(const auto & item : j){
+        string nombre = item["nombre"];
+        string nacionalidad = item["nacionalidad"];
+        string numero_de_pasaporte = item["numero_de_pasaporte"];
+        string vuelo = item["vuelo"];
+        string asiento = item["asiento"];
+        string destino = item["destino"];
+        string origen = item["origen"];
+        int equipaje_facturado = item["equipaje_facturado"];
+
+        pasajeros->insertar(nombre, nacionalidad, numero_de_pasaporte, vuelo, asiento, destino, origen, equipaje_facturado);
+    }
 }
 
 void cargaMovimientos(){
@@ -83,7 +108,9 @@ int main() {
         {
         case 1:
             cargaAviones();
+            cout <<""<<endl;
             cout << "Aviones cargados" << endl;
+            cout <<""<<endl;
             break;
         case 2:
             cargaPasajeros();
@@ -95,10 +122,15 @@ int main() {
             consultarPasajero();
             break;
         case 5:
-            cout << "Aviones disponibles";
+            cout << "Aviones disponibles" << endl;
             avionesDisponibles->mostrar();
-            cout << "Aviones en mantenimiento";
+            cout << "Aviones en mantenimiento" << endl;
             avionesEnMantenimiento->mostrar();
+            cout << "" << endl;
+            cout << "" << endl;
+            cout << "" << endl;
+            cout << "Pasajeros" << endl;
+            pasajeros->mostrarPasajeros();
             break;
         case 6:
             salir();

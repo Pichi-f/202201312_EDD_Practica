@@ -17,9 +17,9 @@ class listaCircularAviones
 
 listaCircularAviones::listaCircularAviones()
 {
-    this->primero = nullptr;
-    this->ultimo = nullptr;
-    this->tamano = 0;
+    primero = nullptr;
+    ultimo = nullptr;
+    tamano = 0;
 }
 
 listaCircularAviones::~listaCircularAviones()
@@ -30,35 +30,35 @@ listaCircularAviones::~listaCircularAviones()
 void listaCircularAviones::insertar(string vuelo, string numero_de_registro, string modelo, string fabricante, int ano_fabricacion, int capacidad, int peso_max_despegue, string aerolinea, string estado)
 {
     nodoAviones *nuevo = new nodoAviones(vuelo, numero_de_registro, modelo, fabricante, ano_fabricacion, capacidad, peso_max_despegue, aerolinea, estado);
-    if (this->primero == 0)
+    if (primero == 0)
     {
-        this->primero = nuevo;
-        this->ultimo = nuevo;
-        this->primero->anterior = this->ultimo;
-        this->ultimo->siguiente = this->primero;
-        this->tamano++;
+        primero = nuevo;
+        ultimo = nuevo;
+        primero->siguiente = primero;
+        primero->anterior = ultimo;
+        tamano++;
     }
     else
     {
-        this->ultimo->siguiente = nuevo;
-        this->ultimo->siguiente->anterior = this->ultimo;
-        this->ultimo->siguiente = this->primero;
-        this->primero->anterior = this->ultimo;
-        this->ultimo = nuevo;
-        this->tamano++;
+        ultimo->siguiente = nuevo;
+        nuevo->anterior = ultimo;
+        nuevo->siguiente = primero;
+        ultimo = nuevo;
+        primero->anterior = ultimo;
+        tamano++;
     }
 }
 
 void listaCircularAviones::mostrar()
 {
-    if (this->primero == 0)
+    if (primero == 0)
     {
         cout << "No hay aviones registrados" << endl;
         return;
     }
     int contador = 0;
-    nodoAviones *aux = this->primero;
-    while (contador != this->tamano)
+    nodoAviones *aux = primero;
+    while (contador != tamano)
     {
         cout << "Vuelo: " << aux->vuelo << endl;
         cout << "Numero de registro: " << aux->numero_de_registro << endl;
