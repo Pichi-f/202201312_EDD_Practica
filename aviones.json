@@ -1,0 +1,46 @@
+[
+    {
+        "vuelo": "AA123",
+        "numero_de_registro": "A12345",
+        "modelo": "Boeing 737",
+        "fabricante": "Boeing",
+        "ano_fabricacion": 2010,
+        "capacidad": 160,
+        "peso_max_despegue": 80000,
+        "aerolinea": "American Airlines",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "DL456",
+        "numero_de_registro": "N12345",
+        "modelo": "Airbus A320",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2015,
+        "capacidad": 180,
+        "peso_max_despegue": 75000,
+        "aerolinea": "Delta",
+        "estado": "Disponible"
+    },
+    {
+        "vuelo": "DL456",
+        "numero_de_registro": "A12345",
+        "modelo": "Airbus A320",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2015,
+        "capacidad": 180,
+        "peso_max_despegue": 75000,
+        "aerolinea": "Delta",
+        "estado": "Mantenimiento"
+    },
+    {
+        "vuelo": "DL456",
+        "numero_de_registro": "C13579",
+        "modelo": "Airbus A320",
+        "fabricante": "Airbus",
+        "ano_fabricacion": 2015,
+        "capacidad": 180,
+        "peso_max_despegue": 75000,
+        "aerolinea": "Delta",
+        "estado": "Mantenimiento"
+    }
+]
