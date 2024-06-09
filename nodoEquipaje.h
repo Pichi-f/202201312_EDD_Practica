@@ -1,3 +1,5 @@
+#ifndef NODOEQUIPAJE_H
+#define NODOEQUIPAJE_H
 #include <iostream>
 #include "nodoPasajeros.h"
 #include "nodoEquipaje.h"
@@ -7,20 +9,22 @@ using namespace std;
 
 class nodoEquipaje{
     public:
-        this->nodoPasajeros *pasajero;
-        this->nodoEquipaje *siguiente;
-        this->nodoEquipaje *anterior;
+        nodoPasajeros* pasajero;
+        nodoEquipaje* siguiente;
+        nodoEquipaje* anterior;
         nodoEquipaje(nodoPasajeros *pasaje);
         virtual ~nodoEquipaje();
 };
 
 nodoEquipaje::nodoEquipaje(nodoPasajeros *pasaje){
-    this->pasajero = pasaje;
-    this->siguiente = nullptr;
-    this->anterior = nullptr;
+    pasajero = pasaje;
+    siguiente = nullptr;
+    anterior = nullptr;
 }
 
 nodoEquipaje::~nodoEquipaje()
 {
 
 }
+
+#endif // NODOEQUIPAJE_H

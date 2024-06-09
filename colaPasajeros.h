@@ -1,3 +1,5 @@
+#ifndef COLAPASAJEROS_H
+#define COLAPASAJEROS_H
 #include <iostream>
 #include <string>
 #include "nodoPasajeros.h"
@@ -13,6 +15,7 @@ class colaPasajeros
         virtual ~colaPasajeros();
         void insertar(string nombre, string nacionalidad, string numero_de_pasaporte, string vuelo, string asiento, string destino, string origen, int equipaje_facturado);
         void mostrarPasajeros();
+        nodoPasajeros* pasajeroRegistrado();
 };
 
 colaPasajeros::colaPasajeros()
@@ -48,26 +51,35 @@ void colaPasajeros::insertar(string nombre, string nacionalidad, string numero_d
 
 void colaPasajeros::mostrarPasajeros()
 {
-    if (primero == nullptr) // Cambio de 0 a nullptr para mejorar la legibilidad
+    if (primero == nullptr)
     {
         cout << "No hay pasajeros registrados" << endl;
         return;
     }
-    int contador = 0;
     nodoPasajeros *aux = primero;
-    while (aux != nullptr)
-    {
-        cout << "Pasajero " << contador + 1 << ": " << endl;
-        cout << "Nombre: " << aux->nombre << endl;
-        cout << "Nacionalidad: " << aux->nacionalidad << endl;
-        cout << "Numero de pasaporte: " << aux->numero_de_pasaporte << endl;
-        cout << "Vuelo: " << aux->vuelo << endl;
-        cout << "Asiento: " << aux->asiento << endl;
-        cout << "Destino: " << aux->destino << endl;
-        cout << "Origen: " << aux->origen << endl;
-        cout << "Equipaje facturado: " << aux->equipaje_facturado << endl;
-        cout << endl;
+    while (aux != nullptr){
+        cout << aux->numero_de_pasaporte << std::endl;
         aux = aux->siguiente;
-        contador++;
-    }
+    } 
 }
+
+nodoPasajeros* colaPasajeros::pasajeroRegistrado(){
+    if (primero == nullptr)
+    {
+        cout << "No hay pasajeros registrados" << endl;
+        return nullptr;
+    }
+    nodoPasajeros* nodoRegreso = primero;
+    nodoPasajeros* nodoEliminar = primero;
+    primero = primero->siguiente;
+
+    if (primero == nullptr)
+    {
+        ultimo = nullptr;
+    }
+    cout << "Pasajero eliminado" << nodoEliminar->numero_de_pasaporte << endl;
+    delete nodoEliminar;
+    return nodoRegreso;
+}
+
+#endif // COLAPASAJEROS_H

@@ -1,7 +1,10 @@
 #include <iostream>
 #include "json.hpp"
 #include <fstream>
-#include <cstring>
+#include <sstream>
+#include <string>
+#include <algorithm>
+#include <cctype>
 #include "listaCircularAviones.h"
 #include "nodoAviones.h"
 #include "colaPasajeros.h"
@@ -83,9 +86,55 @@ void cargaPasajeros(){
     }
 }
 
-void cargaMovimientos(){
+void comparacion(const std::string& palabra) {
+    std::string comando, estado, registro;
+    std::stringstream ss(palabra);
+    std::getline(ss, comando, ',');
+    std::getline(ss, estado, ',');
+    std::getline(ss, registro, ',');
+
+    if (estado == "Ingreso") {
+        nodoAviones* avion = avionesDisponibles->cambiarEstado(estado, registro);
+        if (avion) { // Verificar que avion no es nulo
+            avion->estado = "Mantenimiento";
+            avionesEnMantenimiento->insertar(avion->vuelo, avion->numero_de_registro, avion->modelo, avion->fabricante, avion->ano_fabricacion, avion->capacidad, avion->peso_max_despegue, avion->aerolinea, avion->estado);
+        }
+    } else if (estado == "Salida") {
+        nodoAviones* avion = avionesEnMantenimiento->cambiarEstado(estado, registro);
+        if (avion) { // Verificar que avion no es nulo
+            avion->estado = "Disponible";
+            avionesDisponibles->insertar(avion->vuelo, avion->numero_de_registro, avion->modelo, avion->fabricante, avion->ano_fabricacion, avion->capacidad, avion->peso_max_despegue, avion->aerolinea, avion->estado);
+        }
+    }
+}
+
+void cargaMovimientos() {
     std::ifstream archivo("movimientos.txt");
-    
+    if (!archivo.is_open()) {
+        std::cout << "No se pudo abrir el archivo" << std::endl;
+        return;
+    }
+    std::string str((std::istreambuf_iterator<char>(archivo)), std::istreambuf_iterator<char>());
+    archivo.close();
+
+    std::stringstream ss(str);
+    std::string token;
+    while (std::getline(ss, token, ';')) {
+        std::transform(token.begin(), token.end(), token.begin(), ::toupper);
+        token.erase(std::remove_if(token.begin(), token.end(), ::isspace), token.end());
+        std::istringstream iss(token);
+        std::string palabra;
+        while (iss >> palabra) {
+            if (palabra == "INGRESOEQUIPAJES") {
+                nodoPasajeros* pasajero = pasajeros->pasajeroRegistrado();
+                if (pasajero) { // Verificar que pasajero no es nulo
+                    pila->insertarNodoPila(pasajero);
+                }
+            } else {
+                comparacion(palabra);
+            }
+        }
+    }
 }
 
 void consultarPasajero(){

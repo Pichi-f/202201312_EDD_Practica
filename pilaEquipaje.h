@@ -1,3 +1,5 @@
+#ifndef PILAEQUIPAJE_H
+#define PILAEQUIPAJE_H
 #include <iostream>
 #include "nodoPasajeros.h"
 #include "nodoEquipaje.h"
@@ -37,3 +39,5 @@ void pilaEquipaje::insertarNodoPila(nodoPasajeros *equipajePasajero){
         this->primero = nuevo;
     }
 }
+
+#endif // PILAEQUIPAJE_H
