@@ -6,10 +6,12 @@
 #include "nodoAviones.h"
 #include "colaPasajeros.h"
 #include "nodoPasajeros.h"
+#include "pilaEquipaje.h"
 
 listaCircularAviones *avionesDisponibles = new listaCircularAviones();
 listaCircularAviones *avionesEnMantenimiento = new listaCircularAviones();
 colaPasajeros *pasajeros = new colaPasajeros();
+pilaEquipaje *pila = new pilaEquipaje();
 
 
 using namespace std;
@@ -82,7 +84,8 @@ void cargaPasajeros(){
 }
 
 void cargaMovimientos(){
-    cout << "Carga de movimientos" << endl;
+    std::ifstream archivo("movimientos.txt");
+    
 }
 
 void consultarPasajero(){
