@@ -3,8 +3,9 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <algorithm>
 #include <cctype>
+#include <thread>
+#include <cstdlib>
 #include "listaCircularAviones.h"
 #include "nodoAviones.h"
 #include "colaPasajeros.h"
@@ -174,15 +175,8 @@ int main() {
             consultarPasajero();
             break;
         case 5:
-            cout << "Aviones disponibles" << endl;
-            avionesDisponibles->mostrar();
-            cout << "Aviones en mantenimiento" << endl;
-            avionesEnMantenimiento->mostrar();
-            cout << "" << endl;
-            cout << "" << endl;
-            cout << "" << endl;
-            cout << "Pasajeros" << endl;
-            pasajeros->mostrarPasajeros();
+            avionesDisponibles->graficar("avionesDisponibles");
+            avionesEnMantenimiento->graficar("avionesEnMantenimiento");
             break;
         case 6:
             salir();

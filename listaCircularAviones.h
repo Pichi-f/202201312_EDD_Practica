@@ -3,6 +3,9 @@
 #include <iostream>
 #include <string>
 #include "nodoAviones.h"
+#include <cstdlib>
+#include <fstream>
+#include <thread>
 using namespace std;
 
 class listaCircularAviones
@@ -111,6 +114,37 @@ nodoAviones* listaCircularAviones::cambiarEstado(string estado, string registro)
         contador++;
     }
     return 0;
+}
+
+void listaCircularAviones::graficar(string Nombre){
+    string texto = "digraph G{\n";
+    if (primero == nullptr && ultimo == nullptr)
+    {
+        cout << "No hay aviones registrados" << endl;
+        return;
+    }
+    nodoAviones *actual = primero;
+    do
+    {
+        texto += actual->numero_de_registro + " [label = \"Vuelo: " + actual->vuelo + "\\nNumero de registro: " + actual->numero_de_registro + "\\nEstado: " + actual->estado + "\"];\n";
+        actual = actual->siguiente;
+    } while (actual != primero);
+    actual = primero;
+    do
+    {
+        texto += actual->numero_de_registro + " -> " + actual->siguiente->numero_de_registro + ";\n";
+        texto += actual->numero_de_registro + " -> " + actual->anterior->numero_de_registro + ";\n";
+        actual = actual->siguiente;
+    } while (actual != primero);
+    texto += "}";
+    ofstream archivo;
+    archivo.open(Nombre + ".dot", ios::out);
+    archivo << texto;
+    archivo.close();
+    string comando = "dot -Tpng " + Nombre + ".dot -o " + Nombre + ".png";
+    system(comando.c_str());
+    comando = "mspaint " + Nombre + ".png &"; // Modificado aquí
+    system(comando.c_str());
 }
 
 #endif // LISTACIRCULARAVIONES_H
