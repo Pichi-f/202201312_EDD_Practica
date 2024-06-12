@@ -143,7 +143,18 @@ void listaCircularAviones::graficar(string Nombre){
     archivo.close();
     string comando = "dot -Tpng " + Nombre + ".dot -o " + Nombre + ".png";
     system(comando.c_str());
-    comando = "mspaint " + Nombre + ".png &"; // Modificado aquí
+
+    // Detectar el sistema operativo y elegir el comando adecuado para abrir la imagen
+    #ifdef _WIN32
+    comando = "explorer " + Nombre + ".png";
+    #elif __APPLE__
+    comando = "open " + Nombre + ".png &";
+    #elif __linux__
+    comando = "xdg-open " + Nombre + ".png &";
+    #else
+    #error "OS not supported!"
+    #endif
+
     system(comando.c_str());
 }
 

@@ -6,6 +6,7 @@
 #include <cctype>
 #include <thread>
 #include <cstdlib>
+#include <windows.h>
 #include "listaCircularAviones.h"
 #include "nodoAviones.h"
 #include "colaPasajeros.h"
@@ -176,7 +177,10 @@ int main() {
             break;
         case 5:
             avionesDisponibles->graficar("avionesDisponibles");
+            Sleep(1000);
             avionesEnMantenimiento->graficar("avionesEnMantenimiento");
+            Sleep(1000);
+            pasajeros->graficar("pasajeros");
             break;
         case 6:
             salir();
