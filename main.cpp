@@ -93,13 +93,13 @@ void comparacion(const std::string& palabra) {
     std::getline(ss, estado, ',');
     std::getline(ss, registro, ',');
 
-    if (estado == "Ingreso") {
+    if (estado == "INGRESO") {
         nodoAviones* avion = avionesDisponibles->cambiarEstado(estado, registro);
         if (avion) { // Verificar que avion no es nulo
             avion->estado = "Mantenimiento";
             avionesEnMantenimiento->insertar(avion->vuelo, avion->numero_de_registro, avion->modelo, avion->fabricante, avion->ano_fabricacion, avion->capacidad, avion->peso_max_despegue, avion->aerolinea, avion->estado);
         }
-    } else if (estado == "Salida") {
+    } else if (estado == "SALIDA") {
         nodoAviones* avion = avionesEnMantenimiento->cambiarEstado(estado, registro);
         if (avion) { // Verificar que avion no es nulo
             avion->estado = "Disponible";
