@@ -14,6 +14,7 @@ class pilaEquipaje{
         nodoEquipaje *pasajero;
         void insertarNodoPila(nodoPasajeros *pasajero);
         void mostrarPila();
+        void graficarPila(string Nombre);
         pilaEquipaje();
         virtual ~pilaEquipaje();
 };
@@ -30,6 +31,9 @@ pilaEquipaje::~pilaEquipaje()
 }
 
 void pilaEquipaje::insertarNodoPila(nodoPasajeros *equipajePasajero){
+    if (equipajePasajero->equipaje_facturado == 0){
+        return;
+    }
     nodoEquipaje *nuevo = new nodoEquipaje(equipajePasajero);
     if (this->ultimo == nullptr){
         this->primero = nuevo;
@@ -58,6 +62,43 @@ void pilaEquipaje::mostrarPila(){
             cout << "--------------------------------" << endl;
             aux = aux->siguiente;
         }
+    }
+}
+
+void pilaEquipaje::graficarPila(string Nombre){
+    string texto = "digraph G {\n";
+    texto += "node [shape=record];\n";
+    nodoEquipaje* actual = primero;
+    while (actual != nullptr) {
+        texto += "\"" + actual->pasajero->numero_de_pasaporte + "\" [label=\"{Pasaporte: " + actual->pasajero->numero_de_pasaporte + " | Nombre: " + actual->pasajero->nombre + " | Equipaje: " + to_string(actual->pasajero->equipaje_facturado) + "}\"];\n";
+        if (actual->siguiente != nullptr) {
+            texto += "\"" + actual->pasajero->numero_de_pasaporte + "\" -> \"" + actual->siguiente->pasajero->numero_de_pasaporte + "\";\n";
+        }
+        actual = actual->siguiente;
+    }
+    texto += "}\n";
+
+    ofstream archivo(Nombre + ".dot");
+    if (archivo.is_open()) {
+        archivo << texto;
+        archivo.close();
+        string comando = "dot -Tpng " + Nombre + ".dot -o " + Nombre + ".png";
+        system(comando.c_str());
+
+        // Detectar el sistema operativo y elegir el comando adecuado para abrir la imagen
+        #ifdef _WIN32
+        comando = "explorer " + Nombre + ".png";
+        #elif __APPLE__
+        comando = "open " + Nombre + ".png &";
+        #elif __linux__
+        comando = "xdg-open " + Nombre + ".png &";
+        #else
+        #error "OS not supported!"
+        #endif
+
+        system(comando.c_str());
+    } else {
+        cerr << "No se pudo abrir el archivo para escribir el gráfico." << endl;
     }
 }
 

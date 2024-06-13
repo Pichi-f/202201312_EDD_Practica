@@ -181,6 +181,8 @@ int main() {
             avionesEnMantenimiento->graficar("avionesEnMantenimiento");
             Sleep(1000);
             pasajeros->graficar("pasajeros");
+            Sleep(1000);
+            pila->graficarPila("equipaje");
             break;
         case 6:
             salir();
