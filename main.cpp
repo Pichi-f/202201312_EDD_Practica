@@ -173,7 +173,7 @@ int main() {
             cargaMovimientos();
             break;
         case 4:
-            consultarPasajero();
+            pila->mostrarPila();
             break;
         case 5:
             avionesDisponibles->graficar("avionesDisponibles");

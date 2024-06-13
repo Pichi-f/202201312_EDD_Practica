@@ -82,7 +82,7 @@ nodoPasajeros* colaPasajeros::pasajeroRegistrado(){
         ultimo = nullptr;
     }
     cout << "Pasajero eliminado" << nodoEliminar->numero_de_pasaporte << endl;
-    delete nodoEliminar;
+    //delete nodoEliminar;
     return nodoRegreso;
 }
 
