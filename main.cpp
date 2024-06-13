@@ -12,11 +12,13 @@
 #include "colaPasajeros.h"
 #include "nodoPasajeros.h"
 #include "pilaEquipaje.h"
+#include "doblePasajeros.h"
 
 listaCircularAviones *avionesDisponibles = new listaCircularAviones();
 listaCircularAviones *avionesEnMantenimiento = new listaCircularAviones();
 colaPasajeros *pasajeros = new colaPasajeros();
 pilaEquipaje *pila = new pilaEquipaje();
+doblePasajeros *doble = new doblePasajeros();
 
 
 using namespace std;
@@ -131,6 +133,7 @@ void cargaMovimientos() {
                 nodoPasajeros* pasajero = pasajeros->pasajeroRegistrado();
                 if (pasajero) { // Verificar que pasajero no es nulo
                     pila->insertarNodoPila(pasajero);
+                    doble->insertarNodoDoble(pasajero);
                 }
             } else {
                 comparacion(palabra);
@@ -183,6 +186,8 @@ int main() {
             pasajeros->graficar("pasajeros");
             Sleep(1000);
             pila->graficarPila("equipaje");
+            Sleep(1000);
+            doble->graficarDoble("registrados");
             break;
         case 6:
             salir();
