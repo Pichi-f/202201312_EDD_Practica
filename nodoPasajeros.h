@@ -12,16 +12,16 @@ class nodoPasajeros
         string nacionalidad;
         string numero_de_pasaporte;
         string vuelo;
-        string asiento;
+        int asiento;
         string destino;
         string origen;
         int equipaje_facturado;
         nodoPasajeros *siguiente;
-        nodoPasajeros(string nombre, string nacionalidad, string numero_de_pasaporte, string vuelo, string asiento, string destino, string origen, int equipaje_facturado);
+        nodoPasajeros(string nombre, string nacionalidad, string numero_de_pasaporte, string vuelo, int asiento, string destino, string origen, int equipaje_facturado);
         virtual ~nodoPasajeros();
 };
 
-nodoPasajeros::nodoPasajeros(string nombre, string nacionalidad, string numero_de_pasaporte, string vuelo, string asiento, string destino, string origen, int equipaje_facturado)
+nodoPasajeros::nodoPasajeros(string nombre, string nacionalidad, string numero_de_pasaporte, string vuelo, int asiento, string destino, string origen, int equipaje_facturado)
 {
     this->nombre = nombre;
     this->nacionalidad = nacionalidad;

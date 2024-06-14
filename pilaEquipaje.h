@@ -15,6 +15,7 @@ class pilaEquipaje{
         void insertarNodoPila(nodoPasajeros *pasajero);
         void mostrarPila();
         void graficarPila(string Nombre);
+        void limpiar();
         pilaEquipaje();
         virtual ~pilaEquipaje();
 };
@@ -67,6 +68,10 @@ void pilaEquipaje::mostrarPila(){
 
 void pilaEquipaje::graficarPila(string Nombre){
     string texto = "digraph G {\n";
+    if (primero == 0) {
+        cout << "No hay pasajeros registrados en la Pila" << endl;
+        return;
+    }
     texto += "node [shape=record];\n";
     nodoEquipaje* actual = primero;
     while (actual != nullptr) {
@@ -95,11 +100,21 @@ void pilaEquipaje::graficarPila(string Nombre){
         #else
         #error "OS not supported!"
         #endif
-
         system(comando.c_str());
+
     } else {
         cerr << "No se pudo abrir el archivo para escribir el gráfico." << endl;
     }
+}
+
+void pilaEquipaje::limpiar() {
+    while (primero != nullptr) {
+        nodoEquipaje* actual = primero;
+        primero = primero->siguiente;
+        delete actual;
+    }
+    primero = nullptr;
+    ultimo = nullptr;
 }
 
 #endif // PILAEQUIPAJE_H

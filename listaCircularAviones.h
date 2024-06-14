@@ -19,6 +19,7 @@ class listaCircularAviones
         void insertar(string vuelo, string numero_de_registro, string modelo, string fabricante, int ano_fabricacion, int capacidad, int peso_max_despegue, string aerolinea, string estado);
         void mostrar();
         void graficar(string Nombre);
+        void limpiar();
         nodoAviones* cambiarEstado(string estado, string vuelo);
 };
 
@@ -76,13 +77,12 @@ void listaCircularAviones::mostrar()
 }
 
 nodoAviones* listaCircularAviones::cambiarEstado(string estado, string registro){
-    if (primero == nullptr && ultimo == nullptr)
+    if (primero == 0 )
     {
         cout << "No hay aviones registrados" << endl;
-        return nullptr;
+        return 0;
     }
     int contador = 0;
-    cout<<estado<<endl<<"\n";
     nodoAviones *aux = primero;
     while (contador != tamano)
     {
@@ -116,17 +116,35 @@ nodoAviones* listaCircularAviones::cambiarEstado(string estado, string registro)
     return 0;
 }
 
+void listaCircularAviones::limpiar() {
+    if (primero == nullptr && ultimo == nullptr) {
+        return;
+    }
+
+    nodoAviones* actual = primero;
+    do {
+        nodoAviones* siguiente = actual->siguiente;
+        delete actual;
+        actual = siguiente;
+    } while (actual != primero);
+
+    primero = nullptr;
+    ultimo = nullptr;
+    tamano = 0;
+}
+
 void listaCircularAviones::graficar(string Nombre){
     string texto = "digraph G{\n";
     if (primero == nullptr && ultimo == nullptr)
     {
-        cout << "No hay aviones registrados" << endl;
+        cout << "No hay aviones registrados en la Lista Circular Doble" << endl;
         return;
     }
+    texto += "node [shape=record];\n";
     nodoAviones *actual = primero;
     do
     {
-        texto += actual->numero_de_registro + " [label = \"Vuelo: " + actual->vuelo + "\\nNumero de registro: " + actual->numero_de_registro + "\\nEstado: " + actual->estado + "\"];\n";
+        texto += actual->numero_de_registro + " [label = \"{Vuelo: " + actual->vuelo + " | Numero de registro: " + actual->numero_de_registro + " | Estado: " + actual->estado + "}\"];\n";
         actual = actual->siguiente;
     } while (actual != primero);
     actual = primero;
@@ -154,8 +172,10 @@ void listaCircularAviones::graficar(string Nombre){
     #else
     #error "OS not supported!"
     #endif
-
     system(comando.c_str());
+
+
 }
+
 
 #endif // LISTACIRCULARAVIONES_H

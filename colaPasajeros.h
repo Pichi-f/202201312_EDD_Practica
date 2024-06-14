@@ -16,9 +16,10 @@ class colaPasajeros
         int tamano;
         colaPasajeros();
         virtual ~colaPasajeros();
-        void insertar(string nombre, string nacionalidad, string numero_de_pasaporte, string vuelo, string asiento, string destino, string origen, int equipaje_facturado);
+        void insertar(string nombre, string nacionalidad, string numero_de_pasaporte, string vuelo, int asiento, string destino, string origen, int equipaje_facturado);
         void mostrarPasajeros();
         void graficar(string Nombre);
+        void limpiar();
         nodoPasajeros* pasajeroRegistrado();
 };
 
@@ -34,7 +35,7 @@ colaPasajeros::~colaPasajeros()
 
 }
 
-void colaPasajeros::insertar(string nombre, string nacionalidad, string numero_de_pasaporte, string vuelo, string asiento, string destino, string origen, int equipaje_facturado)
+void colaPasajeros::insertar(string nombre, string nacionalidad, string numero_de_pasaporte, string vuelo, int asiento, string destino, string origen, int equipaje_facturado)
 {
     nodoPasajeros *nuevo = new nodoPasajeros(nombre, nacionalidad, numero_de_pasaporte, vuelo, asiento, destino, origen, equipaje_facturado);
     if (primero == 0)
@@ -81,18 +82,20 @@ nodoPasajeros* colaPasajeros::pasajeroRegistrado(){
     {
         ultimo = nullptr;
     }
-    cout << "Pasajero eliminado" << nodoEliminar->numero_de_pasaporte << endl;
-    //delete nodoEliminar;
     return nodoRegreso;
 }
 
 void colaPasajeros::graficar(string Nombre) {
-        string texto = "digraph G {\n";
+    string texto = "digraph G {\n";
+    if (this->primero == 0) {
+        cout << "No hay pasajeros registrados en la Cola" << endl;
+        return;
+    }
     texto += "node [shape=record];\n";
     nodoPasajeros* actual = primero;
-    while (actual != nullptr) {
+    while (actual != 0) {
         texto += "\"" + actual->numero_de_pasaporte + "\" [label=\"{Pasaporte: " + actual->numero_de_pasaporte + " | Nombre: " + actual->nombre + " | Equipaje: " + to_string(actual->equipaje_facturado) + "}\"];\n";
-        if (actual->siguiente != nullptr) {
+        if (actual->siguiente != 0) {
             texto += "\"" + actual->numero_de_pasaporte + "\" -> \"" + actual->siguiente->numero_de_pasaporte + "\";\n";
         }
         actual = actual->siguiente;
@@ -121,6 +124,16 @@ void colaPasajeros::graficar(string Nombre) {
     } else {
         cerr << "No se pudo abrir el archivo para escribir el gráfico." << endl;
     }
+}
+
+void colaPasajeros::limpiar() {
+    while (primero != nullptr) {
+        nodoPasajeros* actual = primero;
+        primero = primero->siguiente;
+        delete actual;
+    }
+    primero = nullptr;
+    ultimo = nullptr;
 }
 
 #endif // COLAPASAJEROS_H

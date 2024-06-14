@@ -81,7 +81,7 @@ void cargaPasajeros(){
         string nacionalidad = item["nacionalidad"];
         string numero_de_pasaporte = item["numero_de_pasaporte"];
         string vuelo = item["vuelo"];
-        string asiento = item["asiento"];
+        int asiento = item["asiento"];
         string destino = item["destino"];
         string origen = item["origen"];
         int equipaje_facturado = item["equipaje_facturado"];
@@ -99,13 +99,13 @@ void comparacion(const std::string& palabra) {
 
     if (estado == "INGRESO") {
         nodoAviones* avion = avionesDisponibles->cambiarEstado(estado, registro);
-        if (avion) { // Verificar que avion no es nulo
+        if (avion) { 
             avion->estado = "Mantenimiento";
             avionesEnMantenimiento->insertar(avion->vuelo, avion->numero_de_registro, avion->modelo, avion->fabricante, avion->ano_fabricacion, avion->capacidad, avion->peso_max_despegue, avion->aerolinea, avion->estado);
         }
     } else if (estado == "SALIDA") {
         nodoAviones* avion = avionesEnMantenimiento->cambiarEstado(estado, registro);
-        if (avion) { // Verificar que avion no es nulo
+        if (avion) { 
             avion->estado = "Disponible";
             avionesDisponibles->insertar(avion->vuelo, avion->numero_de_registro, avion->modelo, avion->fabricante, avion->ano_fabricacion, avion->capacidad, avion->peso_max_despegue, avion->aerolinea, avion->estado);
         }
@@ -144,10 +144,24 @@ void cargaMovimientos() {
 
 void consultarPasajero(){
     cout << "Consultar pasajero" << endl;
+    string a;
+    cout << "Ingrese el número de pasaporte a buscar: ";
+    cin >> a;
+    doble->busqueda(a);
+
 }
 
 void visualizarReportes(){
-    cout << "Visualizar reportes" << endl;
+    avionesDisponibles->graficar("avionesDisponibles");
+    Sleep(1000);
+    avionesEnMantenimiento->graficar("avionesEnMantenimiento");
+    Sleep(1000);
+    pasajeros->graficar("pasajeros");
+    Sleep(1000);
+    pila->graficarPila("equipaje");
+    Sleep(1000);
+    doble->graficarDoble("registrados");
+
 }
 
 void salir(){
@@ -171,23 +185,21 @@ int main() {
             break;
         case 2:
             cargaPasajeros();
+            cout <<""<<endl;
+            cout << "Pasajeros cargados" << endl;
+            cout <<""<<endl;
             break;
         case 3:
             cargaMovimientos();
+            cout <<""<<endl;
+            cout << "Movimientos cargados" << endl;
+            cout <<""<<endl;
             break;
         case 4:
-            pila->mostrarPila();
+            consultarPasajero();
             break;
         case 5:
-            avionesDisponibles->graficar("avionesDisponibles");
-            Sleep(1000);
-            avionesEnMantenimiento->graficar("avionesEnMantenimiento");
-            Sleep(1000);
-            pasajeros->graficar("pasajeros");
-            Sleep(1000);
-            pila->graficarPila("equipaje");
-            Sleep(1000);
-            doble->graficarDoble("registrados");
+            visualizarReportes();
             break;
         case 6:
             salir();
